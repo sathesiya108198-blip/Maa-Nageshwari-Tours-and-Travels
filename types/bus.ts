@@ -1,0 +1,1 @@
+export type Bus = Record<string, unknown>;
