@@ -4,9 +4,9 @@ import DailyServiceCard from "../components/DailyServiceCard";
 import { services } from "../data/services";
 
 const trustPoints = [
-  { title: "Safe travel", text: "Verified operators and support-first travel planning." },
-  { title: "Comfort first", text: "Comfortable seating, air-conditioned coaches, and clean routes." },
-  { title: "On-time departures", text: "Planned departures with service reliability and route visibility." },
+  { title: "Safe & Secure", text: "Verified operators, secure travel guidance, and dependable support." },
+  { title: "Best Price Guarantee", text: "Transparent fares with quality-first service and route planning." },
+  { title: "24/7 Customer Support", text: "Travel assistance and real-time support before and during the journey." },
 ];
 
 const destinations = [
@@ -47,13 +47,22 @@ export default function HomePage() {
         <div className="section-heading-row">
           <div>
             <p className="eyebrow">Popular destinations</p>
-            <h2>Popular routes for quick planning</h2>
+            <h2>Top Destinations</h2>
+            <p className="section-subtitle">Explore amazing places across Gujarat and India.</p>
           </div>
         </div>
         <div className="destination-grid">
-          {destinations.map((destination) => (
-            <Link key={destination} href={`/booking?from=Ahmedabad&to=${encodeURIComponent(destination)}`} className="destination-card">
+          {destinations.map((destination, index) => (
+            <Link
+              key={destination}
+              href={`/booking?from=Ahmedabad&to=${encodeURIComponent(destination)}`}
+              className="destination-card"
+              style={{
+                backgroundImage: `linear-gradient(135deg, rgba(7,26,51,0.4), rgba(42,157,244,0.18)), url(${index % 2 === 0 ? "/images/bus-hero.png" : "/images/bus-1.jpg"})`,
+              }}
+            >
               <span>{destination}</span>
+              <small>{index % 2 === 0 ? "Gujarat" : "India"}</small>
             </Link>
           ))}
         </div>

@@ -125,48 +125,104 @@ export default function BookingForm() {
   };
 
   const renderResults = () => (
-    <div className="booking-layout">
-      <aside className="booking-sidebar">
-        <h3>Search summary</h3>
-        <div className="summary-card">
-          <p>{from} → {to}</p>
-          <p>{date}</p>
-          <p>{tripType} trip</p>
+    <div className="results-shell">
+      <div className="results-header">
+        <div>
+          <p className="eyebrow">Search summary</p>
+          <h1>{from} <span className="route-arrow">→</span> {to}</h1>
+          <p className="result-meta">{date} • {tripType} trip</p>
         </div>
-        {tripType === "Return" && (
-          <div className="summary-card">
-            <div className="toggle-row">
-              <span>Use same bus for return</span>
-              <input type="checkbox" checked={sameBusReturn} onChange={() => setSameBusReturn((value) => !value)} />
-            </div>
-            {!sameBusReturn && (
-              <div className="stack-list">
-                {returnResults.slice(0, 3).map((bus) => (
-                  <button key={bus.id} type="button" className={`result-chip ${returnBus?.id === bus.id ? "selected" : ""}`} onClick={() => setReturnBus(bus)}>
-                    {bus.operator} • {bus.busNumber}
-                  </button>
-                ))}
+        <button type="button" className="secondary-button" onClick={handleCancel}>Edit Search</button>
+      </div>
+
+      <div className="results-layout">
+        <aside className="filter-panel">
+          <h3>Bus Filters</h3>
+
+          <div className="filter-group">
+            <span className="filter-label">Bus Type</span>
+            {[
+              "Seater",
+              "Sleeper",
+              "Semi-Sleeper",
+              "Sofa",
+              "Mixed",
+            ].map((option) => (
+              <label key={option} className="filter-option">
+                <input type="checkbox" defaultChecked={option === "Seater" || option === "Sleeper"} />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+
+          <div className="filter-group">
+            <span className="filter-label">AC / Non-AC</span>
+            {[
+              "AC",
+              "Non-AC",
+            ].map((option) => (
+              <label key={option} className="filter-option">
+                <input type="checkbox" defaultChecked={option === "AC"} />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+
+          <div className="filter-group">
+            <span className="filter-label">Operator</span>
+            {[
+              "VRL Travels",
+              "Sharma Travels",
+              "Raj Express",
+              "Maa Nageshwari",
+            ].map((option) => (
+              <label key={option} className="filter-option">
+                <input type="checkbox" defaultChecked />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+
+          <div className="filter-group">
+            <span className="filter-label">Departure Time</span>
+            <label className="filter-option"><input type="checkbox" defaultChecked /><span>Morning</span></label>
+            <label className="filter-option"><input type="checkbox" defaultChecked /><span>Afternoon</span></label>
+            <label className="filter-option"><input type="checkbox" defaultChecked /><span>Night</span></label>
+          </div>
+
+          {tripType === "Return" && (
+            <div className="filter-group">
+              <span className="filter-label">Return option</span>
+              <div className="toggle-row compact">
+                <span>Use same bus for return</span>
+                <input type="checkbox" checked={sameBusReturn} onChange={() => setSameBusReturn((value) => !value)} />
               </div>
-            )}
-          </div>
-        )}
-      </aside>
+              {!sameBusReturn && (
+                <div className="stack-list tiny-list">
+                  {returnResults.slice(0, 3).map((bus) => (
+                    <button key={bus.id} type="button" className={`result-chip ${returnBus?.id === bus.id ? "selected" : ""}`} onClick={() => setReturnBus(bus)}>
+                      {bus.operator}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </aside>
 
-      <section className="content-panel">
-        <div className="section-heading-row">
-          <div>
-            <p className="eyebrow">Available buses</p>
-            <h2>{outwardResults.length} results</h2>
+        <section className="results-stack">
+          <div className="results-toolbar">
+            <span>{outwardResults.length} buses available</span>
+            <span className="results-sort">Recommended for you</span>
           </div>
-          <button type="button" className="secondary-button" onClick={handleCancel}>Cancel Booking</button>
-        </div>
 
-        <div className="results-list">
-          {outwardResults.map((bus) => (
-            <BusCard key={bus.id} bus={bus} onSelect={onSelectBus} />
-          ))}
-        </div>
-      </section>
+          <div className="results-list">
+            {outwardResults.map((bus) => (
+              <BusCard key={bus.id} bus={bus} onSelect={onSelectBus} />
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 

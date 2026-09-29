@@ -25,7 +25,7 @@ export default function BusSearch() {
 
   return (
     <div className="search-panel">
-      <div className="trip-toggle">
+      <div className="trip-toggle" aria-label="Trip type selector">
         <button
           type="button"
           className={tripType === "One Way" ? "active" : ""}
@@ -43,8 +43,8 @@ export default function BusSearch() {
       </div>
 
       <div className="search-grid">
-        <label>
-          From
+        <label className="field-label">
+          <span>From</span>
           <CityAutocomplete value={from} placeholder="Select source city" onChange={setFrom} />
         </label>
 
@@ -62,13 +62,13 @@ export default function BusSearch() {
           ⇄
         </button>
 
-        <label>
-          To
+        <label className="field-label">
+          <span>To</span>
           <CityAutocomplete value={to} placeholder="Select destination city" onChange={setTo} />
         </label>
 
-        <label>
-          Travel Date
+        <label className="field-label">
+          <span>Travel Date</span>
           <DatePicker value={date} onChange={setDate} />
         </label>
       </div>

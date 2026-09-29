@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navItems = [
@@ -14,32 +15,50 @@ const navItems = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
     <header className="top-header">
       <div className="top-strip">
-        <div className="container">
-          <span>Call: +91 98765 43210</span>
-          <span>Email: hello@maanageshwari.in</span>
+        <div className="container top-strip-inner">
+          <div className="top-strip-left">
+            <span>☎ +91 98765 43210</span>
+            <span className="divider" aria-hidden="true" />
+            <span>✉ hello@maanageshwari.in</span>
+          </div>
+
+          <div className="top-strip-right" aria-label="Social channels">
+            <span>f</span>
+            <span>in</span>
+            <span>X</span>
+          </div>
         </div>
       </div>
 
       <div className="nav-wrap container">
         <Link href="/" className="brand-box" aria-label="Maa Nageshwari home">
           <div className="brand-mark">MN</div>
-          <div>
+          <div className="brand-copy">
             <strong>Maa Nageshwari</strong>
             <small>Tours &amp; Travels</small>
           </div>
         </Link>
 
         <nav className={`nav-menu ${open ? "open" : ""}`}>
-          {navItems.map((item) => (
-            <Link key={item.label} href={item.href} onClick={() => setOpen(false)}>
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={active ? "nav-link active" : "nav-link"}
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="nav-actions">

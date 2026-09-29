@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import BottomNav from "../components/BottomNav";
 import AIAssistant from "../components/AIAssistant";
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div className="site-shell">
           <Header />
           <main className="page-content">{children}</main>
+          <Footer />
           <BottomNav />
           <AIAssistant />
         </div>
