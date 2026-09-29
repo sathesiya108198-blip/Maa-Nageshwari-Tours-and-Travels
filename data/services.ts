@@ -1,1 +1,52 @@
-export const services: unknown[] = [];
+export const services = [
+  {
+    id: "svc-1",
+    service: "Ahmedabad to Rajkot Daily Service",
+    route: "Ahmedabad – Rajkot",
+    operator: "Maa Nageshwari Tours & Travels",
+    departure: "06:15",
+    arrival: "10:45",
+    days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    frequency: "Daily",
+    fare: 760,
+    status: "Available",
+  },
+  {
+    id: "svc-2",
+    service: "Surat to Ahmedabad Express",
+    route: "Surat – Ahmedabad",
+    operator: "VRL Travels",
+    departure: "08:00",
+    arrival: "11:25",
+    days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    frequency: "Weekdays",
+    fare: 620,
+    status: "Available",
+  },
+  {
+    id: "svc-3",
+    service: "Vadodara to Mumbai Premium",
+    route: "Vadodara – Mumbai",
+    operator: "Sharma Travels",
+    departure: "21:30",
+    arrival: "05:30",
+    days: ["Mon", "Wed", "Fri", "Sun"],
+    frequency: "Selected Days",
+    fare: 1200,
+    status: "Limited",
+  },
+  {
+    id: "svc-4",
+    service: "Rajkot to Jamnagar Shuttle",
+    route: "Rajkot – Jamnagar",
+    operator: "Raj Express",
+    departure: "07:45",
+    arrival: "09:10",
+    days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    frequency: "Daily",
+    fare: 420,
+    status: "Available",
+  }
+];
+
+export default services;

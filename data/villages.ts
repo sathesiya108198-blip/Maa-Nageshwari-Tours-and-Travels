@@ -1,1 +1,36 @@
-export const villages: string[] = [];
+export const villages = [
+  "Amod",
+  "Bhesan",
+  "Dhandhuka",
+  "Disa",
+  "Gadchiroli",
+  "Jalalpore",
+  "Kadi",
+  "Limbdi",
+  "Mundra",
+  "Patan Rural",
+  "Sanjan",
+  "Sidhpur",
+  "Thangadh",
+  "Viramgam",
+  "Wankaner Rural",
+  "Wadodara",
+  "Zalod",
+  "Bhachau",
+  "Kutch Rural",
+  "Dhrangadhra",
+  "Barvala",
+  "Vav",
+  "Bavla Rural",
+  "Rajula",
+  "Matar",
+  "Mokhada",
+  "Nakhatrana",
+  "Tarsadi",
+  "Boriya",
+  "Pipavav",
+  "Palsana",
+  "Visavadar"
+];
+
+export const villageSuggestions = villages.map((village) => ({ value: village, label: village }));
